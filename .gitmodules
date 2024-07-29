@@ -1,0 +1,6 @@
+[submodule "buildroot"]
+	path = buildroot
+	url = https://gitlab.com/buildroot.org/buildroot.git
+[submodule "external/board/orangepi/orangepi-5/rkbin"]
+	path = external/board/orangepi/orangepi-5/rkbin
+	url = https://github.com/rockchip-linux/rkbin.git
