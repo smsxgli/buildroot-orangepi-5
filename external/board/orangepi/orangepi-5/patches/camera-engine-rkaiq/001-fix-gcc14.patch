@@ -1,0 +1,25 @@
+diff --git a/rkaiq/algos/agamma/rk_aiq_agamma_algo_v11.cpp b/rkaiq/algos/agamma/rk_aiq_agamma_algo_v11.cpp
+index 38445ab6..7d692233 100644
+--- a/rkaiq/algos/agamma/rk_aiq_agamma_algo_v11.cpp
++++ b/rkaiq/algos/agamma/rk_aiq_agamma_algo_v11.cpp
+@@ -44,7 +44,7 @@ void AgammaSetDefaultManuAttrParmasV11(AgammaHandle_t* handle) {
+ XCamReturn AgammaInit(AgammaHandle_t** pGammaCtx, CamCalibDbV2Context_t* pCalib) {
+     LOG1_AGAMMA("ENTER: %s \n", __func__);
+     XCamReturn ret         = XCAM_RETURN_NO_ERROR;
+-    AgammaHandle_t* handle = (AgammaHandle_t*)calloc(sizeof(AgammaHandle_t), 1);
++    AgammaHandle_t* handle = (AgammaHandle_t*)calloc(1, sizeof(AgammaHandle_t));
+     if (NULL == handle) return XCAM_RETURN_ERROR_MEM;
+ 
+     CalibDbV2_gamma_v11_t* calibv2_agamma_calib =
+diff --git a/rkaiq/ipc_server/MessageParser.cpp b/rkaiq/ipc_server/MessageParser.cpp
+index 8118da69..15663407 100644
+--- a/rkaiq/ipc_server/MessageParser.cpp
++++ b/rkaiq/ipc_server/MessageParser.cpp
+@@ -15,6 +15,7 @@
+  */
+ 
+ #include "MessageParser.hpp"
++#include <cstdio>
+ 
+ #define BUFFER_MAX_SIZE (1024 * 512)
+ 
