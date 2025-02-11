@@ -128,6 +128,18 @@ menu "Rockchip BSP packages"
 	source "$BR2_EXTERNAL_ORANGEPI_5_PATH/package/rockchip/rknpu2/Config.in"
 	source "$BR2_EXTERNAL_ORANGEPI_5_PATH/package/rockchip/rockchip-rga/Config.in"
 	source "$BR2_EXTERNAL_ORANGEPI_5_PATH/package/rockchip/rockchip-mpp/Config.in"
+	source "$BR2_EXTERNAL_ORANGEPI_5_PATH/package/rockchip/rkwifibt/Config.in"
+endmenu
+
+endif
+
+menuconfig BR2_PACKAGE_ORANGEPI
+	bool "OrangePi Platform"
+
+if BR2_PACKAGE_ORANGEPI
+
+menu "OrangePi BSP packages"
+	source "$BR2_EXTERNAL_ORANGEPI_5_PATH/package/orangepi/armbian-firmware-opi/Config.in"
 endmenu
 
 endif
