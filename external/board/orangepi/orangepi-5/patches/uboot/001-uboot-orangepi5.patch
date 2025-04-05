@@ -202,7 +202,7 @@ index 301bd15375..4bd4b27518 100755
  
  if __name__ == "__main__":
 diff --git a/arch/arm/mach-rockchip/fit_nodes.sh b/arch/arm/mach-rockchip/fit_nodes.sh
-index 9639a06e1c..96ac06e923 100755
+index c9cc466963..f876254b46 100755
 --- a/arch/arm/mach-rockchip/fit_nodes.sh
 +++ b/arch/arm/mach-rockchip/fit_nodes.sh
 @@ -181,6 +181,9 @@ function gen_bl32_node()
@@ -495,3 +495,16 @@ index 89c5db231f..5c9d01f02c 100644
  	int i, charging = 1, ret;
  	int boot_mode;
  	int first_poll_fg = 1;
+diff --git a/tools/rockchip/bmp2gray16.c b/tools/rockchip/bmp2gray16.c
+index a331d14397..031438e384 100644
+--- a/tools/rockchip/bmp2gray16.c
++++ b/tools/rockchip/bmp2gray16.c
+@@ -106,7 +106,7 @@ struct input_img_info {
+ struct input_img_info in_img_info[16];
+ uint32_t screen_w;
+ uint32_t screen_h;
+-static const char version[4] = "1.00";
++static const char version[] = "1.00";
+ static const char *PROG;
+ 
+ static const char *fix_path(const char *path)

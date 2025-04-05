@@ -128,7 +128,6 @@ menu "Rockchip BSP packages"
 	source "$BR2_EXTERNAL_ORANGEPI_5_PATH/package/rockchip/rknpu2/Config.in"
 	source "$BR2_EXTERNAL_ORANGEPI_5_PATH/package/rockchip/rockchip-rga/Config.in"
 	source "$BR2_EXTERNAL_ORANGEPI_5_PATH/package/rockchip/rockchip-mpp/Config.in"
-	source "$BR2_EXTERNAL_ORANGEPI_5_PATH/package/rockchip/rkwifibt/Config.in"
 endmenu
 
 endif
