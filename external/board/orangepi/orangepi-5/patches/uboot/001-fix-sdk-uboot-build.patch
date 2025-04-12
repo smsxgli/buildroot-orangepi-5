@@ -1,0 +1,99 @@
+diff --git a/arch/arm/mach-rockchip/decode_bl31.py b/arch/arm/mach-rockchip/decode_bl31.py
+index 42fa32d23d..1cff8c3a41 100755
+--- a/arch/arm/mach-rockchip/decode_bl31.py
++++ b/arch/arm/mach-rockchip/decode_bl31.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python2
++#!/usr/bin/env python3
+ #
+ # Copyright (C) 2020 Rockchip Electronics Co., Ltd
+ #
+diff --git a/arch/arm/mach-rockchip/fit_nodes.sh b/arch/arm/mach-rockchip/fit_nodes.sh
+index be7d46d8f7..18f1da57e1 100755
+--- a/arch/arm/mach-rockchip/fit_nodes.sh
++++ b/arch/arm/mach-rockchip/fit_nodes.sh
+@@ -155,7 +155,7 @@ function gen_bl32_node()
+ 		fi
+ 	fi
+ 
+-	TEE="tee.bin"
++	#TEE="tee.bin"
+ 	echo "		optee {
+ 			description = \"OP-TEE\";
+ 			data = /incbin/(\"${TEE}${SUFFIX}\");
+diff --git a/arch/arm/mach-rockchip/make_fit_atf.py b/arch/arm/mach-rockchip/make_fit_atf.py
+index fac8d6f121..25c7ff133a 100755
+--- a/arch/arm/mach-rockchip/make_fit_atf.py
++++ b/arch/arm/mach-rockchip/make_fit_atf.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python2
++#!/usr/bin/env python3
+ """
+ A script to generate FIT image source for rockchip boards
+ with ARM Trusted Firmware
+diff --git a/arch/arm/mach-rockchip/make_fit_atf.sh b/arch/arm/mach-rockchip/make_fit_atf.sh
+index 045273e3bd..32ef33b8b0 100755
+--- a/arch/arm/mach-rockchip/make_fit_atf.sh
++++ b/arch/arm/mach-rockchip/make_fit_atf.sh
+@@ -10,7 +10,7 @@ source ./${srctree}/arch/arm/mach-rockchip/fit_nodes.sh
+ gen_header
+ gen_uboot_node
+ gen_bl31_node
+-#gen_bl32_node
++gen_bl32_node
+ gen_mcu_node
+ gen_loadable_node
+ gen_kfdt_node
+diff --git a/common/command.c b/common/command.c
+index 7171557265..001238a9fc 100644
+--- a/common/command.c
++++ b/common/command.c
+@@ -501,7 +501,7 @@ static int cmd_call(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
+ 	return result;
+ }
+ 
+-enum command_ret_t cmd_process(int flag, int argc, char * const argv[],
++int cmd_process(int flag, int argc, char * const argv[],
+ 			       int *repeatable, ulong *ticks)
+ {
+ 	enum command_ret_t rc = CMD_RET_SUCCESS;
+diff --git a/drivers/mmc/rockchip_dw_mmc.c b/drivers/mmc/rockchip_dw_mmc.c
+index 1287551bf1..a78cb39c7f 100644
+--- a/drivers/mmc/rockchip_dw_mmc.c
++++ b/drivers/mmc/rockchip_dw_mmc.c
+@@ -42,7 +42,7 @@ int board_mmc_dm_reinit(struct udevice *dev)
+ {
+ 	struct rockchip_dwmmc_priv *priv = dev_get_priv(dev);
+ 
+-	if (!priv || !&priv->clk)
++	if (!priv)
+ 		return 0;
+ 
+ 	if (!memcmp(dev->name, "dwmmc", strlen("dwmmc")))
+diff --git a/drivers/power/charge_animation.c b/drivers/power/charge_animation.c
+index c16f40e194..ac58f93c30 100644
+--- a/drivers/power/charge_animation.c
++++ b/drivers/power/charge_animation.c
+@@ -572,7 +572,8 @@ static int charge_animation_show(struct udevice *dev)
+ 	ulong delta;
+ 	ulong ms = 0, sec = 0;
+ 	int start_idx = 0, show_idx = -1, old_show_idx = IMAGE_RECALC_IDX;
+-	int soc, voltage, current, key_state;
++	int soc = 0, current = 0;
++	int voltage, key_state;
+ 	int i, charging = 1, ret;
+ 	int boot_mode;
+ 	int first_poll_fg = 1;
+diff --git a/tools/rockchip/bmp2gray16.c b/tools/rockchip/bmp2gray16.c
+index a331d14397..031438e384 100644
+--- a/tools/rockchip/bmp2gray16.c
++++ b/tools/rockchip/bmp2gray16.c
+@@ -106,7 +106,7 @@ struct input_img_info {
+ struct input_img_info in_img_info[16];
+ uint32_t screen_w;
+ uint32_t screen_h;
+-static const char version[4] = "1.00";
++static const char version[] = "1.00";
+ static const char *PROG;
+ 
+ static const char *fix_path(const char *path)

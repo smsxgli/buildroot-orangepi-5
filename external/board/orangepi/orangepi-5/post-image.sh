@@ -23,7 +23,7 @@ ubootDir=`find ${BASE_DIR}/build -name 'uboot-*' -type d`
 ${ubootDir}/tools/mkimage -n rk3588 -T rksd -d ${BINARIES_DIR}/${tplName}:${BINARIES_DIR}/u-boot-spl.bin ${BINARIES_DIR}/idbloader.img
 
 echo creating boot.scr
-${ubootDir}/tools/mkimage -n 'boot script' -T script -A arm -C none -d ${BINARIES_DIR}/boot.cmd ${BINARIES_DIR}/boot.scr
+mkimage -n 'boot script' -T script -A arm -C none -d ${BINARIES_DIR}/boot.cmd ${BINARIES_DIR}/boot.scr
 
 ${CONFIG_DIR}/support/scripts/genimage.sh -c ${BR2_EXTERNAL_ORANGEPI_5_PATH}/board/orangepi/orangepi-5/genimage.cfg
 
